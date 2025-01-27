@@ -1,6 +1,8 @@
 import 'package:expy/common/color_extension.dart';
 
 import 'package:expy/common_widgets/orange_button.dart';
+import 'package:expy/view/signin_view.dart';
+import 'package:expy/view/signup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -55,7 +57,12 @@ class _WelcomeViewState extends State<WelcomeView> {
                     child: GradientButton(
                         label: 'Get Started',
                         gradientColors: [TColor.secondary, TColor.secondary50],
-                        onPressed: () {}),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignupView()));
+                        }),
                   ),
                   Container(
                     height: 58,
@@ -64,7 +71,12 @@ class _WelcomeViewState extends State<WelcomeView> {
                     child: GradientButton(
                         gradientColors: [TColor.gray70, TColor.gray50],
                         label: 'I have an account',
-                        onPressed: () {}),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignInView()));
+                        }),
                   )
                 ],
               ),

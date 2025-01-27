@@ -1,6 +1,7 @@
 import 'package:expy/common/color_extension.dart';
 import 'package:expy/common_widgets/orange_button.dart';
 import 'package:expy/common_widgets/text_fieldl.dart';
+import 'package:expy/view/signin_view.dart';
 import 'package:flutter/material.dart';
 
 class SignupView extends StatefulWidget {
@@ -93,7 +94,12 @@ class _SignupViewState extends State<SignupView> {
                 margin: const EdgeInsets.only(top: 30),
                 child: GradientButton(
                     label: "Get started,it's free!",
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignInView()));
+                    },
                     gradientColors: [TColor.secondary, TColor.secondary50]),
               ),
               const SizedBox(height: 100),
@@ -111,7 +117,12 @@ class _SignupViewState extends State<SignupView> {
                 child: GradientButton(
                     gradientColors: [TColor.gray70, TColor.gray50],
                     label: 'I have an account',
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignInView()));
+                    }),
               )
             ],
           ),
