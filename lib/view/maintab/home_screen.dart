@@ -32,13 +32,23 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TColor.gray80,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Column(
         children: [
-          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                IconButton(
+                  icon: Icon(
+                    Icons.settings_outlined,
+                    color: TColor.gray50,
+                  ),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
 
           // Circular Progress Bar
           Center(
