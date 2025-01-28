@@ -1,7 +1,7 @@
 import 'package:expy/common/color_extension.dart';
-import 'package:expy/view/signin_view.dart';
+import 'package:expy/view/maintab/home_screen.dart';
 
-import 'package:expy/view/welcome_view.dart';
+import 'package:expy/view/onboarding/welcome_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
             secondary: TColor.secondary,
           ),
           useMaterial3: false),
-      home: const WelcomeView(),
+      home: const HomeScreen(),
     );
   }
 }

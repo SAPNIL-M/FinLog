@@ -1,8 +1,8 @@
 import 'package:expy/common/color_extension.dart';
 
 import 'package:expy/common_widgets/orange_button.dart';
-import 'package:expy/view/signin_view.dart';
-import 'package:expy/view/signup_view.dart';
+import 'package:expy/view/onboarding/signin_view.dart';
+import 'package:expy/view/onboarding/signup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -61,7 +61,7 @@ class _WelcomeViewState extends State<WelcomeView> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SignupView()));
+                                  builder: (context) => const SignupView()));
                         }),
                   ),
                   Container(
@@ -75,7 +75,7 @@ class _WelcomeViewState extends State<WelcomeView> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SignInView()));
+                                  builder: (context) => const SignInView()));
                         }),
                   )
                 ],
