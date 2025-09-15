@@ -5,12 +5,14 @@ class TextFieldl extends StatelessWidget {
   final String type;
   final TextInputType keyboardType;
   final bool obscured;
+  final TextEditingController? controller;
 
   const TextFieldl(
       {super.key,
       required this.type,
       required this.keyboardType,
-      required this.obscured});
+      required this.obscured,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +30,12 @@ class TextFieldl extends StatelessWidget {
           height: 58,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: TColor.gray60.withOpacity(0.05),
+            color: TColor.gray60.withValues(alpha: 0.05),
             border: Border.all(color: TColor.gray70),
             borderRadius: BorderRadius.circular(15),
           ),
           child: TextField(
+            controller: controller,
             keyboardType: keyboardType,
             style: TextStyle(color: TColor.gray50),
             obscureText: obscured,

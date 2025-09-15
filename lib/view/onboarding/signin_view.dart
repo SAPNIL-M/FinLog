@@ -1,6 +1,7 @@
 import 'package:expy/common/color_extension.dart';
 import 'package:expy/common_widgets/orange_button.dart';
 import 'package:expy/common_widgets/text_fieldl.dart';
+import 'package:expy/view/maintab/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class SignInView extends StatefulWidget {
@@ -13,6 +14,15 @@ class SignInView extends StatefulWidget {
 
 class _SignInViewState extends State<SignInView> {
   bool isChecked = false;
+  final _emailCtrl = TextEditingController();
+  final _passwordCtrl = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailCtrl.dispose();
+    _passwordCtrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +43,20 @@ class _SignInViewState extends State<SignInView> {
               Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   margin: const EdgeInsets.only(top: 140),
-                  child: const TextFieldl(
+                  child: TextFieldl(
                     type: 'Login',
                     keyboardType: TextInputType.emailAddress,
                     obscured: false,
+                    controller: _emailCtrl,
                   )),
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 24),
-                child: const TextFieldl(
+                child: TextFieldl(
                   type: 'Password',
                   keyboardType: TextInputType.visiblePassword,
                   obscured: true,
+                  controller: _passwordCtrl,
                 ),
               ),
               Padding(
@@ -52,25 +64,23 @@ class _SignInViewState extends State<SignInView> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      child: Row(
-                        children: [
-                          Checkbox(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                            value: isChecked,
-                            onChanged: (bool? newValue) {
-                              setState(() {
-                                isChecked = newValue!;
-                              });
-                            },
-                          ),
-                          Text(
-                            'Remember me',
-                            style: TextStyle(color: TColor.gray50),
-                          ),
-                        ],
-                      ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                          value: isChecked,
+                          onChanged: (bool? newValue) {
+                            setState(() {
+                              isChecked = newValue!;
+                            });
+                          },
+                        ),
+                        Text(
+                          'Remember me',
+                          style: TextStyle(color: TColor.gray50),
+                        ),
+                      ],
                     ),
                     TextButton(
                         onPressed: () {},
@@ -81,13 +91,13 @@ class _SignInViewState extends State<SignInView> {
                   ],
                 ),
               ),
-              Container(
+      Container(
                 height: 58,
                 width: media.width * 0.9,
                 margin: const EdgeInsets.only(top: 25),
                 child: GradientButton(
                     label: "Sign In",
-                    onPressed: () {},
+        onPressed: _onSignIn,
                     gradientColors: [TColor.secondary, TColor.secondary50]),
               ),
               const SizedBox(height: 100),
@@ -111,6 +121,31 @@ class _SignInViewState extends State<SignInView> {
           ),
         ),
       )),
+    );
+  }
+}
+
+extension on _SignInViewState {
+  void _onSignIn() {
+    FocusScope.of(context).unfocus();
+    final email = _emailCtrl.text.trim();
+    final password = _passwordCtrl.text;
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Please enter email and password'),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: TColor.gray60,
+        ),
+      );
+      return;
+    }
+
+    // TODO: Replace with real auth. For now, navigate to Home.
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => const HomeScreen()),
+      (route) => false,
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:expy/common/color_extension.dart';
 import 'package:expy/view/maintab/home_screen.dart';
 
-import 'package:expy/view/onboarding/welcome_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
